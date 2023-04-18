@@ -22,7 +22,7 @@
 
 //______________________________________________________________________________18/04/2023
 // //Listando um Array com MAP
-// num3.map((numero,key)=>{
+// num3.map((numero, key)=>{
     
 //     console.log(`${key + 1} - Itens do Array - ${numero}`);
 //     numero.forEach((digitos)=>{
@@ -30,6 +30,7 @@
 //     })
 // })
 
+//--------------------------------
 // const liElement = document.getElementsByTagName("li") //utiliza de uma coleção de objetos no geral, utilizando do seu nome e não do seu id/sua identificação
 
 // //Declaração de Arrays
@@ -50,8 +51,30 @@
 // const liElementHTML = document.getElementsByTagName("li");
 // const liElementArray = [...liElementHTML];
 
-// liElementArray.map((item,key)=>{
+// liElementArray.map((item, key)=>{
 //     if (item.textContent == "Item-39"){
 //         console.log(`${key + 1} - ${item.textContent = "LOCALIZADO"}`);
 //     }
 // })
+
+//--------------------------------
+function soma(p1, p2, p3) {
+    num1 = p1;
+    num2 = p2;
+
+    return parseInt(num1) + parseInt(num2) + parseInt(p3)
+
+    // console.log(`Resultado: ${parseInt(num1) + parseInt(num2) + parseInt(parametro)}`)
+    // console.log(`Este é o parêmetro passado à função: ${parametro}`)
+//}
+
+//--------------------------------
+//ARROW FUNCTION
+const mudaCor = ()=>{
+
+    //FUNÇÃO AUTÔNOMA SET-TIME-OUT
+    setTimeout(soma(1,2,3), 5000);
+
+}
+
+soma();
