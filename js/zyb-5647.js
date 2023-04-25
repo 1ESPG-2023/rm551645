@@ -58,23 +58,52 @@
 // })
 
 //--------------------------------
-function soma(p1, p2, p3) {
-    num1 = p1;
-    num2 = p2;
+// function soma(p1, p2, p3) {
+//     num1 = p1;
+//     num2 = p2;
 
-    return parseInt(num1) + parseInt(num2) + parseInt(p3)
+//     return parseInt(num1) + parseInt(num2) + parseInt(p3)
 
-    // console.log(`Resultado: ${parseInt(num1) + parseInt(num2) + parseInt(parametro)}`)
-    // console.log(`Este é o parêmetro passado à função: ${parametro}`)
-//}
+//     // console.log(`Resultado: ${parseInt(num1) + parseInt(num2) + parseInt(parametro)}`)
+//     // console.log(`Este é o parêmetro passado à função: ${parametro}`)
+// //}
 
-//--------------------------------
-//ARROW FUNCTION
-const mudaCor = ()=>{
+// //--------------------------------
+// //ARROW FUNCTION
+// const mudaCor = ()=>{
 
-    //FUNÇÃO AUTÔNOMA SET-TIME-OUT
-    setTimeout(soma(1,2,3), 5000);
+//     //FUNÇÃO AUTÔNOMA SET-TIME-OUT
+//     setTimeout(soma(1,2,3), 5000);
+
+// }
+
+// soma();
+//______________________________________________________________________________25/04/2023
+
+let tmp = ""
+
+function mudaCor(){
+
+    let r = "";
+    let g = "";
+    let b = "";
+
+    //random = gera números aleatórios entre 0 e 1.
+    //ceil, floor e round = arredondam o número para cima, para baixo ou aleatoriamente.
+
+    //Determinando para a variável r um valor entre 0 e 255
+    r = Math.round(Math.random() * 255);
+    g = Math.round(Math.random() * 255);
+    b = Math.round(Math.random() * 255);
+
+    //querySelector = seleciona um elemento igual o css
+    const cabeçalho = document.querySelector(".cabeçalho")
+
+    cabeçalho.setAttribute("style", `background-color:rgb(${r}, ${g}, ${b})`)
+
+    //Uma função  de callback, que executa algo e retorna algo: primeiro parâmetro é o que vai executar e o segundo, o tempo
+    tmp = setTimeout(mudaCor, 1000);
 
 }
 
-soma();
+mudaCor();

@@ -4,7 +4,7 @@
     align-items: center;
     width: 100vw;
     height: 20vh;
-    background-color: brown;
+    background-color: teal;
     color: #fff;
 }
 
@@ -13,7 +13,7 @@
     justify-content: space-between;
     width: 100vw;
     height: 60vh;
-    background-color: antiquewhite;
+    background-color: palevioletred;
 }
 
 .container .central{
@@ -27,5 +27,5 @@
 
 .container .l-d{
     flex-grow: 5;
-    background-color: violet;
+    background-color: plum;
 }
