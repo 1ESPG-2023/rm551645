@@ -53,21 +53,69 @@ addEventListener("click", (evento)=>{
         let lista = JSON.parse(localStorage.getItem("listaUser"));
         //precisa usar o jason (JSON) para conseguir usar essa variável
 
-        lista.forEach((usuario)=> {
+        let userValidado = {};
 
-        //Simulando uma VALIDAÇÃO
+        try{
+            lista.forEach((usuario)=> {
 
-        if(inputUserValue == usuario.nomeUsuario && inputPassValue == usuario.senhaUsuario){
-            console.log("VALIDADO!");
-            h1Titulo.innerHTML = "Bem-vindo: " + usuario.nomeUsuario;
-        } else{
-            console.log("NÃO VALIDOU!");
-            h1Titulo.innerHTML = "";
-        }
+            //Simulando uma VALIDAÇÃO
+                if(inputUserValue == usuario.nomeUsuario && inputPassValue == usuario.senhaUsuario){
+                    userValidado = usuario;
+                    throw "VALIDADO!";    
+                }
+            });
 
-            console.log(usuario.nomeUsuario);
-        });
+                throw "NÃO VALIDADO!";
+
+        }catch(msg){
+            if(msg == "VALIDADO!"){
+                h1Titulo.innerHTML = "<span><strong>Login validado com sucesso!</strong></span>";
+                h1Titulo.setAttribute("style","color:#00ff00;");
+
+                //Adicionando uma propriedade ao nosso objeto usuarioValidado: => token É A PROPRIEDADE
+                userValidado["token"] = Math.random().toString(16).substring(2)+Math.random().toString(16).substring(2);
+
+                //Setando um novo objeto no LocalStorage
+                localStorage.setItem("UserValidado", JSON.stringify(userValidado));
+
+                //Direcionando o usuário para a página de sucesso:
+                window.location.href = "../sucesso.html";
+            }else{
+                h1Titulo.innerHTML = "<span><strong>Login ou senha inválidos!</strong></span>";
+                h1Titulo.setAttribute("style","color:#ff0000;");
+                //Direcionando o usuário para a página de erro:
+                window.location.href = "../erro.html";
+            }
+        }       
     }
 });
 
 //O local-storage serve para guardar informações localmente, como se fosse um banco de dados; pode desligar e ligar denovo o computador que não vai perder as informações salvas
+
+try{
+    const userBemVindo = document.querySelector("#userWelcome");
+    let usuario = JSON.parse(localStorage.getItem("UserValidado"));
+
+    if(usuario){
+        if(usuario.tokenp){
+            userBemVindo.innerHTML = usuario.nomeUsuario;
+        }
+    
+    }else{
+        window.location.href = "../erro.html";
+    }
+
+    const botaoLogout = document.querySelector("#btnLogout");
+    botaoLogout.addEventListener("click", ()=>{
+        localStorage.removeItem("UserValidado")
+        window.location.href = "../login.html"
+
+    });
+
+}catch(erro){
+
+    if(userBemVindo != null){
+        userBemVindo.innerHTML = JSON.parse(localStorage.getItem("UserValidado")).nomeUsuario;
+    }
+
+}
